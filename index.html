@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPアドレス計算サイト</title>
+    <link rel="stylesheet" href="bootstrap-reboot.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+    <div class="main">
+    <header class="head">
+        <h1>IPアドレス計算サイト(IPv4)</h1>
+    </header>
+    <div class="description">
+        <p>このサイトではIPアドレスの計算が行えます。<br>IPアドレス及びサブネットマスクを入力するとネットワークアドレス、ホストアドレス、ブロードキャストアドレス、アドレス数そしてクラスが出力されます。<br>出力形式は10進数です。<br>入力は10進数にのみ対応しています。</p>
+    </div>
+    <div class="form">
+        <form id="form" name="frm" action="javascript:void(0)">
+            <div class="divip">
+                <label for="ipaddress" class="labelip" >IPアドレス：
+                    <input type="number" placeholder="192" required min="0" max="255"  id ="ipaddress"name="ipaddress1" class="ipaddress">
+                    <p class="pip">.</p>
+                    <input type="number" placeholder="168" required min="0" max="255"  name="ipaddress2" class="ipaddress"> 
+                    <p class="pip">.</p>
+                    <input type="number" placeholder="1" required min="0" max="255"  name="ipaddress3" class="ipaddress">
+                    <p class="pip">.</p>
+                    <input type="number" placeholder="0" required min="0" max="255"  name="ipaddress4" class="ipaddress">
+                </label>
+            </div>
+            <div>
+                <label for="subnetmask">サブネットマスク：
+                    <select name="subnet" id="subnetmask" required>
+                        <option value="128.0.0.0">/1(/128.0.0.0)</option>
+                        <option value="192.0.0.0">/2(/192.0.0.0)</option>
+                        <option value="224.0.0.0">/3(/224.0.0.0)</option>
+                        <option value="240.0.0.0">/4(/240.0.0.0)</option>
+                        <option value="248.0.0.0">/5(/248.0.0.0)</option>
+                        <option value="252.0.0.0">/6(/252.0.0.0)</option>
+                        <option value="254.0.0.0">/7(/254.0.0.0)</option>
+                        <option value="255.0.0.0">/8(/255.0.0.0)</option>
+                        <option value="255.128.0.0">/9(/255.128.0.0)</option>
+                        <option value="255.192.0.0">/10(/255.192.0.0)</option>
+                        <option value="255.224.0.0">/11(/255.224.0.0)</option>
+                        <option value="255.240.0.0">/12(/255.240.0.0)</option>
+                        <option value="255.248.0.0">/13(/255.248.0.0)</option>
+                        <option value="255.252.0.0">/14(/255.252.0.0)</option>
+                        <option value="255.254.0.0">/15(/255.254.0.0)</option>
+                        <option value="252.255.0.0">/16(/252.255.0.0)</option>
+                        <option value="255.255.128.0">/17(/255.255.128.0)</option>
+                        <option value="255.255.192.0">/18(/255.255.192.0)</option>
+                        <option value="255.255.224.0">/19(/255.255.224.0)</option>
+                        <option value="255.255.240.0">/20(/255.255.240.0)</option>
+                        <option value="225.255.248.0">/21(/225.255.248.0)</option>
+                        <option value="255.255.252.0">/22(/255.255.252.0)</option>
+                        <option value="225.255.254.0">/23(/225.255.254.0)</option>
+                        <option value="255.255.255.0" selected>/24(/255.255.255.0)</option>
+                        <option value="255.255.255.128">/25(/255.255.255.128)</option>
+                        <option value="255.255.255.192">/26(/255.255.255.192)</option>
+                        <option value="255.255.255.224">/27(/255.255.255.224)</option>
+                        <option value="255.255.255.240">/28(/255.255.255.240)</option>
+                        <option value="255.255.255.248">/29(/255.255.255.248)</option>
+                        <option value="255.255.255.252">/30(/255.255.255.252)</option>
+                        <option value="255.255.255.254">/31(/255.255.255.254)</option>
+                        <option value="255.255.255.255">/32(/255.255.255.255)</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label for="calculate"><input type="submit" id="calculate" value="計算" ></label>
+
+                <label for="reset"><input type="reset" id="reset" value="リセット"></label>
+
+            </div>
+        </form>
+    </div>
+    <div class="table">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th colspan="2">計算結果<br></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>IPアドレス</th>
+                    <td id ="ip">例)192.168.1.0</td>
+                </tr>
+                <tr>
+                    <th>サブネットマスク</th>
+                    <td id="subnet">例)/24(/255.255.255.0)</td>
+                </tr>
+                <tr>
+                    <th>ネットワークアドレス</th>
+                    <td id="network">例)192.168.1.0</td>
+                </tr>
+                <tr>
+                    <th>ホストアドレス</th>
+                    <td id="hostaddress">例)192,168,1,1~192,168,1,254</td>
+                </tr>
+                <tr>
+                    <th>ブロードキャストアドレス</th>
+                    <td id="broadcastaddress">例)192,168,1,255</td>
+                </tr>
+                <tr>
+                    <th>アドレス数</th>
+                    <td id="addressnum">例)256</td>
+                </tr>
+                <tr>
+                    <th>クラス</th>
+                    <td id="class">例)C</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <p>&copy; 2020 18EC401 All rights reserved.</p>
+    </footer>
+</div>
+<script type="text/javascript" src="code.js"></script>
+</body>
+
+</html>
